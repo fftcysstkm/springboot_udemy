@@ -8,12 +8,11 @@
 <body>
 <h1 th:text="${title}">仮のタイトル</h1>
 <p>入力内容をご確認ください</p>
-<p th:text="${inquiryForm.name}"></p>
 <div th:object="${inquiryForm}">
 <p th:text="*{name}"></p>
 <p th:text="*{email}"></p>
 <p th:text="*{contents}"></p>
-<form method="post" action="#" th:action="@{/inquiry}">
+<form method="post" action="#" th:action="@{/inquiry/form}">
 	<input type="hidden" name="name" th:value="*{name}">
 	<input type="hidden" name="email" th:value="*{email}">
 	<input type="hidden" name="contents" th:value="*{contents}">

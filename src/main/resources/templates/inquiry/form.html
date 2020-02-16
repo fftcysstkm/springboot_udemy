@@ -15,9 +15,9 @@
 	<label for="email">メール:</label>
 	<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 	<input id="email" name="email" type="text" th:value="*{email}"><br>
-	<label for="contents">詳細　:</label>
-	<textarea name="contents" id="contents" rows="3" cols="40" th:field="*{contents}"></textarea><br>
-	<div th:if="${#fields.hasErrors('contents')}" th:errors="*{contents}"></div>
+	<label for="comment">詳細　:</label>
+	<textarea name="comment" id="comment" rows="3" cols="40" th:field="*{comment}"></textarea><br>
+	<div th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
 	<input type="submit" value="確認ページへ">
 </form>
 </body>

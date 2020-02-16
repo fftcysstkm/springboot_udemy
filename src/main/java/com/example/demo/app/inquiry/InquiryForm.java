@@ -8,17 +8,18 @@ public class InquiryForm{
 
 	@Size(min = 1, max = 20, message = "Please input 20characters or less.")
 	private String name;
-	
+
 	@NotNull
 	@Email(message = "Invalid E-mail Format")
 	private String email;
-	
+
 	@NotNull
 	private String contents;
-	
-	
+
+
 	public InquiryForm() {
 	}
+
 	public String getName() {
 		return name;
 	}

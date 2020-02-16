@@ -10,13 +10,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Survey;
-import com.example.demo.entity.Survey;
 
 @Repository
-public class SurveyDaoImpl implements SurveyDao{
-	
+public class SurveyDaoImpl implements SurveyDao {
+
 	private final JdbcTemplate jdbcTemplate;
-	
+
 	@Autowired
 	public SurveyDaoImpl(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
@@ -24,21 +23,29 @@ public class SurveyDaoImpl implements SurveyDao{
 
 	@Override
 	public void insertSurvey(Survey survey) {
-
-		//hands-on
-		
+		jdbcTemplate.update("INSERT INTO inquiry(age, satisfaction, comment, created) VALUES(?, ?, ?, ?)",
+				survey.getAge(),survey.getSatisfaction(),survey.getComment(),survey.getCreated());
 	}
 
 	@Override
 	public List<Survey> getAll() {
-		//make SQL
-		List<Map<String, Object>> resultList = null;
-		List<Survey> list = null;
+		String sql = "SELECT id, age, satisfaction, comment, created FROM survey";
+		//MapのListを返す。
+		List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql);
 
-		//Set the data form database into Survey instance
+		//各MapをEntityに詰め直し、
+		List<Survey> list = new ArrayList<Survey>();
+		for(Map<String, Object> result : resultList) {
+			Survey survey = new Survey();
+			survey.setId((int)result.get("id"));
+			survey.setAge((int)result.get("age"));
+			survey.setSatisfaction((int)result.get("satisfaction"));
+			survey.setComment((String)result.get("satisfaction"));
+			survey.setCreated(((Timestamp)result.get("created")).toLocalDateTime());
+			list.add(survey);
+		}
 
 		return list;
 	}
-	
-	
+
 }

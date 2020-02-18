@@ -20,7 +20,7 @@ public class SurveyServiceImpl implements SurveyService {
 
 	//データ登録
 	@Override
-	public void insert(Survey survey) {
+	public void insertSurvey(Survey survey) {
 		dao.insertSurvey(survey);
 	}
 

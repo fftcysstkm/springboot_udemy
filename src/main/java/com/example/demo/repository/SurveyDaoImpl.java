@@ -23,10 +23,9 @@ public class SurveyDaoImpl implements SurveyDao {
 
 	@Override
 	public void insertSurvey(Survey survey) {
-		jdbcTemplate.update("INSERT INTO inquiry(age, satisfaction, comment, created) VALUES(?, ?, ?, ?)",
+		jdbcTemplate.update("INSERT INTO survey(age, satisfaction, comment, created) VALUES(?, ?, ?, ?)",
 				survey.getAge(),survey.getSatisfaction(),survey.getComment(),survey.getCreated());
 	}
-
 	@Override
 	public List<Survey> getAll() {
 		String sql = "SELECT id, age, satisfaction, comment, created FROM survey";
@@ -40,11 +39,11 @@ public class SurveyDaoImpl implements SurveyDao {
 			survey.setId((int)result.get("id"));
 			survey.setAge((int)result.get("age"));
 			survey.setSatisfaction((int)result.get("satisfaction"));
-			survey.setComment((String)result.get("satisfaction"));
+			survey.setComment((String)result.get("comment"));
 			survey.setCreated(((Timestamp)result.get("created")).toLocalDateTime());
 			list.add(survey);
 		}
-
+		//Entityのリストを返す。
 		return list;
 	}
 

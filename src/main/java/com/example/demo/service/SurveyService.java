@@ -6,7 +6,7 @@ import com.example.demo.entity.Survey;
 
 public interface SurveyService {
 
-	void insert(Survey survey);
+	void insertSurvey(Survey survey);
 
 	List<Survey> getAll();
 

@@ -14,7 +14,7 @@
 <form method="post" action="#" th:action="@{/survey/confirm}" th:object="${surveyForm}">
 	<label for="age">年齢:</label>
 	<input id="age" name="age" type="number" th:value="*{age}"><br>
-	<div th:if="${#fields.hasErrors('age')}" th:errors="*{age}">></div>
+	<div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
 	<label for="satisfaction">満足度:</label>
 		<input name="satisfaction" type="radio" value="1" th:checked="*{satisfaction == 1}">1
 		<input name="satisfaction" type="radio" value="2" th:checked="*{satisfaction == 2}">2
@@ -23,8 +23,8 @@
 		<input name="satisfaction" type="radio" value="5" th:checked="*{satisfaction == 5}">5<br>
 		<div th:if="${#fields.hasErrors('satisfaction')}" th:errors="*{satisfaction}"></div>
 	<label for="contents">コメント:</label>
-	<textarea name="contents" id="contents" rows="3" cols="40" th:field="*{contents}"></textarea><br>
-	<div th:if="${#fields.hasErrors('contents')}" th:errors="*{contents}"></div>
+	<textarea name="comment" id="comment" rows="3" cols="40" th:field="*{comment}"></textarea><br>
+	<div th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
 	<input type="submit" value="確認ページへ">
 </form>
 </body>

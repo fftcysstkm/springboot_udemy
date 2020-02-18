@@ -1,5 +1,6 @@
 package com.example.demo.app.survey;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -49,7 +50,7 @@ public class SurveyController{
 	}
 
 	//確認ページ。入力チェック結果がBindingResultに格納される。
-		@PostMapping("/confirm")
+	@PostMapping("/confirm")
 	public String confirm(@Validated SurveyForm surveyForm,
 			BindingResult result,
 			Model model) {
@@ -81,6 +82,17 @@ public class SurveyController{
 			model.addAttribute("title", "Survey Form");
 			return "survey/form";
 		}
+
+		//Surveyクラス(Entity)にsurveyFormの値を詰め直す。
+		Survey survey = new Survey();
+		survey.setAge(surveyForm.getAge());
+		survey.setSatisfaction(surveyForm.getSatisfaction());
+		survey.setComment(surveyForm.getComment());
+		survey.setCreated(LocalDateTime.now());
+
+		//DB登録
+		surveyService.insertSurvey(survey);
+
 		redirectAttributes.addFlashAttribute("complete", "completed!");
 		return "redirect:/survey/form";
 	}
